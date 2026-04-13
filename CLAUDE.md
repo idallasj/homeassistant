@@ -1,4 +1,24 @@
 # CLAUDE.md
+
+## KNOWLEDGE MAP — READ THIS FIRST
+
+At the start of every session, the knowledge graph for this project lives here:
+
+| Vault | Path | Contents |
+|-------|------|----------|
+| Code architecture | `.obsidian-vaults/homeassistant-code-architecture/` | Module map, dependency graph, git log, ADRs |
+| Business | `.obsidian-vaults/homeassistant-business/` | Roadmap, competitive intel, IP/trademark notes |
+| Personal | `.obsidian-personal/homeassistant-personal/` | Session logs, research, AI-CONTEXT notes |
+
+**Entry points:**
+- Module index: `.obsidian-vaults/homeassistant-code-architecture/modules/`
+- Recent commits: `.obsidian-vaults/homeassistant-code-architecture/git-log/recent-commits.md`
+- Current roadmap: `.obsidian-vaults/homeassistant-business/roadmap.md`
+- Session context: `.obsidian-personal/homeassistant-personal/AI-CONTEXT/`
+
+Do not ask where files are. Read the module index first.
+
+
 #
 # Guidance for Claude Code (claude.ai/code) when working in this repository.
 # These instructions are authoritative. Follow them strictly.
