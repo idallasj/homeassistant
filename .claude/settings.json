@@ -1,0 +1,80 @@
+{
+  "permissions": {
+    "defaultMode": "plan",
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(conda run:*)",
+      "Bash(ruff:*)",
+      "Bash(black:*)",
+      "Bash(pytest:*)"
+    ],
+    "deny": [
+      "Read(docker/secrets/**)",
+      "Read(.agentshroud/secrets/**)",
+      "Read(/run/secrets/**)",
+      "Read(**/history.env)",
+      "Read(**/.env)",
+      "Read(**/.env.*)"
+    ]
+  },
+
+  "model": "opusplan",
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tools:BashTool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/warn_dangerous_bash.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/block_main_commits.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/block_credential_read.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "tools:EditTool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/block_credential_write.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "tools:WriteTool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/block_credential_write.sh"
+          }
+        ]
+      }
+    ],
+
+    "PostToolUse": [
+      {
+        "matcher": "tools:BashTool",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/auto_format_python.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/scripts/claude-hooks/run_targeted_tests.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

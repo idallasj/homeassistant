@@ -1,0 +1,1 @@
+- 5b8a9fe Initial commit: Home Assistant Docker setup (2026-04-13)
